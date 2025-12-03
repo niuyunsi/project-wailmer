@@ -31,10 +31,15 @@ name: Push to Amazon ECR
 on:
   push:
     branches: ["main"]
+  workflow_dispatch: # Enables manual trigger
+    inputs:
+      ref:
+        description: "Branch, tag, or commit to run on"
+        required: false
 
 env:
   AWS_REGION: us-east-1 # set this to your preferred AWS region, e.g. us-west-1
-  REGISTRY_ALIAS: n6q5v2z5
+  REGISTRY_ALIAS: n6q5v2z5 # set this to your Amazon ECR Public registry alias
   ECR_REPOSITORY: project-wailmer # set this to your Amazon ECR repository name
   # ECS_SERVICE: MY_ECS_SERVICE # set this to your Amazon ECS service name
   # ECS_CLUSTER: MY_ECS_CLUSTER # set this to your Amazon ECS cluster name
